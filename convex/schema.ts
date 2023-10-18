@@ -6,12 +6,12 @@ export default defineSchema({
     title: v.string(),
     userId: v.string(),
     isArchived: v.boolean(),
-    parantDocument: v.optional(v.id("documents")),
+    parentDocument: v.optional(v.id("documents")),
     content: v.optional(v.string()),
     converImage: v.optional(v.string()),
     icon: v.optional(v.string()),
     isPublished: v.optional(v.boolean()),
   })
     .index("by_user", ["userId"])
-    .index("by_user_parent", ["userId", "parantDocument"]),
+    .index("by_user_parent", ["userId", "parentDocument"]),
 });
