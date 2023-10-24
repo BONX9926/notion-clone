@@ -47,7 +47,7 @@ export const Title = ({ initialData }: TitleProps) => {
   };
 
   return (
-    <div className="dlex items-center gap-x-1">
+    <div className="flex items-center gap-x-1">
       {!!initialData.icon && <p>{initialData.icon}</p>}
       {isEditing ? (
         <Input
