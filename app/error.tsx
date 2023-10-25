@@ -16,13 +16,13 @@ const Error = () => {
         className="dark:hidden"
       />
       <Image
-        src="/error.png"
+        src="/error-dark.png"
         height="300"
         width="300"
         alt="Error"
         className="hidden dark:block"
       />
-      <h2 className="text-xl font-medium">Someting wen wrong!</h2>
+      <h2 className="text-xl font-medium">Someting went wrong!</h2>
       <Button asChild>
         <Link href="/">Go back</Link>
       </Button>

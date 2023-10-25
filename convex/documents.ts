@@ -233,12 +233,9 @@ export const getSearch = query({
 export const getById = query({
   args: { documentId: v.id("documents") },
   handler: async (ctx, args) => {
-    const indentity = await ctx.auth.getUserIdentity();
-    const document = await ctx.db.get(args.documentId);
+    const identity = await ctx.auth.getUserIdentity();
 
-    if (!indentity) {
-      throw new Error("Not authenticated");
-    }
+    const document = await ctx.db.get(args.documentId);
 
     if (!document) {
       throw new Error("Not found");
@@ -248,7 +245,11 @@ export const getById = query({
       return document;
     }
 
-    const userId = indentity.subject;
+    if (!identity) {
+      throw new Error("Not authenticated");
+    }
+
+    const userId = identity.subject;
 
     if (document.userId !== userId) {
       throw new Error("Unauthorized");
