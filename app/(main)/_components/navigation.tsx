@@ -9,7 +9,7 @@ import {
   Settings,
   Trash,
 } from "lucide-react";
-import { useParams, usePathname } from "next/navigation";
+import { useParams, usePathname, useRouter } from "next/navigation";
 import { ElementRef, useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "usehooks-ts";
 import { useMutation } from "convex/react";
@@ -33,6 +33,7 @@ import { TrashBox } from "./trash-box";
 import { Navbar } from "./navbar";
 
 export const Navigation = () => {
+  const router = useRouter();
   const search = useSearch();
   const settings = useSettings();
   const params = useParams();
@@ -120,7 +121,9 @@ export const Navigation = () => {
   };
 
   const handleCreate = () => {
-    const promise = create({ title: "Untitled" });
+    const promise = create({ title: "Untitled" }).then((documentId) => {
+      router.push(`/documents/${documentId}`);
+    });
 
     toast.promise(promise, {
       loading: "Creating a new note...",
